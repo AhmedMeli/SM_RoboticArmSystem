@@ -10,10 +10,8 @@
   <!-- Bootstrap icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" >
 
-  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
-    <title>Document</title>
+    <title>RAS</title>
 
     <style>
        input[type=range]::-webkit-slider-thumb {
@@ -27,26 +25,11 @@ input[type=range]:active::-webkit-slider-thumb {
     background-color: black;
     
 }
-
-
-
     </style>
 </head>
 <body>
 
-<?php
 
-
-$motor1= #_GET['motor1'];
-$motor2= #_GET['motor2'];
-$motor3= #_GET['motor3'];
-$motor4= #_GET['motor4'];
-$motor5= #_GET['motor5'];
-$motor6= #_GET['motor6'];
-
-$sql = "UPDATE motors SET (`motor1`, `motor2`, `motor3`, `motor4`, `motor5` , `motor6` ) VALUES ('$motor1', '$motor2', '$motor3', '$motor4', '$motor5', '$motor6') WHERE RobotID = 1";
-
-?>
 
     <div class="container container-fluid">
         <div class="row">
@@ -67,6 +50,7 @@ $sql = "UPDATE motors SET (`motor1`, `motor2`, `motor3`, `motor4`, `motor5` , `m
                   </div>
                 </div>
                 <div class="card-body text-dark">
+                <form  class="form-wrapper" action="updateMotors.php" method="post">
                   <label for="customRange2 " class="form-label">Motors 1</label>
                   <input name="motor1" type="range" class="form-range" min="0" max="180" id="customRange2">
             
@@ -84,6 +68,8 @@ $sql = "UPDATE motors SET (`motor1`, `motor2`, `motor3`, `motor4`, `motor5` , `m
             
                   <label for="customRange2" class="form-label">Motors 6</label>
                   <input name="motor6" type="range" class="form-range" min="0" max="180" id="customRange2">
+                  <button name="submit" type="submit" class="btn btn-dark">Submit</button>
+                  </form>	
                 </div>
               </div>
               
