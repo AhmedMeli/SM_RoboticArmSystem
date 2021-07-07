@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2021 at 12:27 AM
+-- Generation Time: Jul 08, 2021 at 12:16 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `1sttask`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `direction`
+--
+
+CREATE TABLE `direction` (
+  `RobotID` int(8) NOT NULL,
+  `Direction` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `direction`
+--
+
+INSERT INTO `direction` (`RobotID`, `Direction`) VALUES
+(1, 'left');
 
 -- --------------------------------------------------------
 
@@ -43,11 +61,17 @@ CREATE TABLE `motors` (
 --
 
 INSERT INTO `motors` (`RobotID`, `status`, `motor1`, `motor2`, `motor3`, `motor4`, `motor5`, `motor6`) VALUES
-(1, 1, 180, 0, 180, 0, 0, 0);
+(1, 1, 180, 0, 74, 0, 0, 73);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `direction`
+--
+ALTER TABLE `direction`
+  ADD PRIMARY KEY (`RobotID`);
 
 --
 -- Indexes for table `motors`
