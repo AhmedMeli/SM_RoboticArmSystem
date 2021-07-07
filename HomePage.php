@@ -11,8 +11,11 @@ if (mysqli_fetch_assoc($result)["status"] == 1) {
   $check = "checked";
   $disable = "";
   $status = "ON";
+  
 };
-
+$query = "SELECT * FROM Direction WHERE RobotID = 1";
+$result = mysqli_fetch_assoc(mysqli_query($dbc, $query));
+$activeClassId = $result['Direction'];
 
 ?>
 <!DOCTYPE html>
@@ -88,13 +91,74 @@ input[type=range]:active::-webkit-slider-thumb {
               </div>
 
           </div>
-
+          <div class="col">
+        <div class="card my-2" style="height: 28rem;">
+          <div class="card-body d-flex justify-content-center">
+            <div class="align-self-center">
+              <table>
+                <tr>
+                  <td>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark controls" id="forward" onclick="myFunction(this.id)" <?php echo $disable; ?>>
+                      <i class="bi bi-chevron-up"></i>
+                    </button>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark controls" id="left" onclick="myFunction(this.id)" <?php echo $disable; ?>>
+                      <i class="bi bi-arrow-counterclockwise"></i>
+                    </button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark controls" id="stop" onclick="myFunction(this.id)" <?php echo $disable; ?>>
+                      <i class="bi bi-stop-circle-fill"></i>
+                    </button>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark controls" id="right" onclick="myFunction(this.id)" <?php echo $disable; ?>>
+                      <i class="bi bi-arrow-clockwise"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-outline-dark controls" id="backward" onclick="myFunction(this.id)" <?php echo $disable; ?>>
+                      <i class="bi bi-chevron-down"></i>
+                    </button>
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
 
+
     
 
-
+        <script>
+      $("#<?php echo $activeClassId ?>").addClass("activeClass");
+      function myFunction(id) {
+        var direction = id;
+        $(".activeClass").removeClass("activeClass");
+        $("#"+id).addClass("activeClass");
+        $.ajax({
+          url: "updateMovement.php",
+          method: "POST",
+          data: {
+            direction: direction
+          },
+        });
+      };
+        </script>
 
       <script>
         $('#flexSwitchCheck1').click(function() {
